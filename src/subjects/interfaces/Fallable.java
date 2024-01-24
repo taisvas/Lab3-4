@@ -1,4 +1,4 @@
-package objects.interfaces;
+package subjects.interfaces;
 
 import person.Human;
 

@@ -1,6 +1,6 @@
 import exceptions.NegativeCoordinateException;
-import objects.Coffin;
-import objects.Flowers;
+import subjects.Coffin;
+import subjects.Flowers;
 import person.*;
 
 public class Main {
@@ -13,7 +13,6 @@ public class Main {
         Flowers flowers = new Flowers("Цветы", 10, 10, 20);
 
         luis.sit();
-        goldmen.beat(luis);
         luis.grab(goldmen.getLeg());
         luis.push(goldmen);
         System.out.println();

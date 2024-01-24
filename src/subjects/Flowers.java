@@ -1,7 +1,7 @@
-package objects;
-import objects.interfaces.*;
+package subjects;
+import subjects.interfaces.*;
 import person.Human;
-public class Flowers extends Object implements Fallable {
+public class Flowers extends Subject implements Fallable {
 
     public Flowers(String name, int weight, int x, int y) {
         super(name, weight, x, y);

@@ -1,6 +1,6 @@
-package objects;
+package subjects;
 
-public abstract class Object {
+public abstract class Subject {
     String name;
     int weight;
     protected Side rightSide;
@@ -9,7 +9,7 @@ public abstract class Object {
     private final int x;
     private int y;
 
-    public Object(String name, int weight, int x, int y) {
+    public Subject(String name, int weight, int x, int y) {
         this.name = name;
         this.weight=weight;
         leftSide = new Side();

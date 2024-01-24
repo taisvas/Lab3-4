@@ -1,7 +1,7 @@
-package objects;
-import objects.interfaces.*;
+package subjects;
+import subjects.interfaces.*;
 import person.Human;
-public class Coffin extends Object implements Fallable {
+public class Coffin extends Subject implements Fallable {
     private final Human deadBody;
 
     public Coffin(String name, int weight, int x, int y, Human deadBody) {

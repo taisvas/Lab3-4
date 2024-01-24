@@ -53,7 +53,7 @@ public class Luis extends Human implements Personable {
     }
 
     public void think() {
-        System.out.printf(" «Оз Великий и Узасный спустился на гроб моего сына», — подумал %s почему-то. ", this.name);
+        System.out.printf(" «Оз Великий и Узасный спустился на моего сына», — подумал %s почему-то. ", this.name);
         this.setCondition(Condition.CALM);
         System.out.printf("(Настроение %s поменялось на %s) ", this.name, this.getCondition());
     }
