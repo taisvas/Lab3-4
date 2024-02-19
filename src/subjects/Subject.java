@@ -1,58 +1,77 @@
 package subjects;
 
+@SuppressWarnings("ALL")
 public abstract class Subject {
-    String name;
-    int weight;
+    private String name;
+    private int weight;
+    private final int x;
+    private int y;
     protected Side rightSide;
     protected Side leftSide;
     protected Side centre;
-    private final int x;
-    private int y;
 
     public Subject(String name, int weight, int x, int y) {
         this.name = name;
-        this.weight=weight;
+        this.weight = weight;
+        this.x = x;
+        this.y = y;
         leftSide = new Side();
         rightSide = new Side();
         centre = new Side();
-        this.x=x;
-        this.y=y;
     }
+
     public String getName() {
         return name;
     }
 
-    public int getY() {
-        return y;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
     }
 
     public int getX() {
         return x;
     }
 
+    public int getY() {
+        return y;
+    }
+
     public void setY(int y) {
         this.y = y;
     }
 
-    protected static class Side {
-        protected double weightLeft;
-        protected double weightRight;
-        protected double weightCentre;
-
-        public Side() {
-            weightLeft = Math.random() * (40 - 20) + 20;
-            weightRight = Math.random() * (40 - 20) + 20;
-            weightCentre = Math.random() * (40 - 20) + 20;
-        }
-
-        public double getWeightLeftSide() { return weightLeft; }
-        public double getWeightRightSide() {
-            return weightRight;
-        }
-        public double getWeightCentreSide() {
-            return weightCentre;
-        }
+    public Side getRightSide() {
+        return rightSide;
     }
+
+    public void setRightSide(Side rightSide) {
+        this.rightSide = rightSide;
+    }
+
+    public Side getLeftSide() {
+        return leftSide;
+    }
+
+    public void setLeftSide(Side leftSide) {
+        this.leftSide = leftSide;
+    }
+
+    public Side getCentre() {
+        return centre;
+    }
+
+    public void setCentre(Side centre) {
+        this.centre = centre;
+    }
+
 
     @Override
     public String toString() {
@@ -61,9 +80,6 @@ public abstract class Subject {
                 ", weight=" + weight +
                 ", x=" + x +
                 ", y=" + y +
-                ", leftSide weight=" + leftSide.weightLeft +
-                ", rightSide weight=" + rightSide.weightRight +
-                ", centre weight=" + centre.weightCentre +
                 '}';
     }
 
@@ -73,11 +89,6 @@ public abstract class Subject {
         result = 31 * result + weight;
         result = 31 * result + x;
         result = 31 * result + y;
-        result = 31 * result + Double.hashCode(leftSide.weightLeft);
-        result = 31 * result + Double.hashCode(rightSide.weightRight);
-        result = 31 * result + Double.hashCode(centre.weightCentre);
         return result;
     }
-
 }
-

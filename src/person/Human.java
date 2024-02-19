@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public abstract class Human implements Personable {
-    public final String name;
+    private String name;
     protected Condition condition;
     protected Arms hands;
     protected Legs leg;
@@ -15,41 +15,64 @@ public abstract class Human implements Personable {
     private int x;
     private int y;
     protected Place place;
-    public static class Body{
-        public Body(){}
-    }
-    public static class Arms extends Body {
+
+    public class Arms extends Body {
         protected Position position;
         public ArrayList<Body> armSubjects;
-        {
+
+        public Arms() {
             this.armSubjects = new ArrayList<>();
             position = Position.DOWN;
         }
-        public void haveSubjects(Body body) {armSubjects.add(body);}
-        public void removeSubjects() {armSubjects.remove(0);}
+
+        public void haveSubjects(Body body) {
+            if (armSubjects.size() < 2) {
+                armSubjects.add(body);
+                System.out.printf("В руках %s теперь есть %s ", name, armSubjects);
+            } else {
+                System.out.println("У человека не может быть больше двух рук!");
+            }
+        }
+
+        public void removeSubjects() {
+            armSubjects.remove(0);
+            System.out.printf("В руках %s теперь ничего нет ", name);
+        }
 
         public Position getPosition(){
             return position;
         }
+
         public void setPosition(Position position){
             this.position = position;
         }
     }
+    public String getName() {
+        return name;
+    }
 
-    public static class Legs extends Body {
+    public void setName(String name) {
+        this.name = name;
+    }
+    public static class Body{
+        public Body(){}
+    }
+    public class Legs extends Body {
         public ArrayList<Body> legSubjects;
-        {
+
+        public Legs() {
             legSubjects = new ArrayList<>();
         }
     }
-    public static class Head extends Body {
+
+    public class Head extends Body {
         public ArrayList<Body> subjects;
 
-        {
+        public Head() {
             subjects = new ArrayList<>();
-
         }
     }
+
     public Human(String name, int x, int y) {
         this.name = name;
         this.condition = Condition.CALM;
@@ -64,13 +87,16 @@ public abstract class Human implements Personable {
     public int getX() {
         return x;
     }
+
     @Override
     public int getY() {
         return y;
     }
+
     public void setX(int x) {
         this.x = x;
     }
+
     public void setY(int y) {
         this.y = y;
     }
@@ -94,13 +120,19 @@ public abstract class Human implements Personable {
     }
 
     public void takeToArm(Body body) {
-        hands.haveSubjects(body);
+        removeFromArms(); // Удаляем предыдущие предметы из руки
+        hands.haveSubjects(body); // Добавляем новый предмет
         System.out.printf("В руках %s теперь есть %s ", name, hands.armSubjects);
     }
+
+
     public void removeFromArms() {
-        hands.removeSubjects();
-        System.out.printf("В руках %s теперь ничего нет ", name);
+        if (!hands.armSubjects.isEmpty()) { // Проверяем, что в руках что-то есть
+            hands.removeSubjects(); // Удаляем предметы из руки
+            System.out.printf("В руках %s теперь ничего нет ", name);
+        }
     }
+
 
     public void wave(){
         System.out.printf("%s начал махать руками. ", this.name);
